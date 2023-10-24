@@ -11,7 +11,7 @@ public class Tank {
 
     public Tank() {
         x = 0;
-        y = 300;
+        y = 400;
         xSpeed = 2;
         ySpeed = 0;
     }

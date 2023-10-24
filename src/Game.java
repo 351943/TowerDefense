@@ -40,12 +40,11 @@ public class Game extends PApplet {
         rect(0,350,800,150);
 //if timer runs out, make a new tank
         fill(100,100,0);
-        for (int i = 0; i < 5; i++) {
             System.out.println(timer);
             if(timer<=0) {
                 Tank t = new Tank();
                 tankList.add(t);
-                timer=80;
+                timer = 150;
             }
             if(!tankList.isEmpty()){
                 for (Tank tank : tankList) {
@@ -60,11 +59,13 @@ public class Game extends PApplet {
 
 
 //update all the tanks
-    }
+
     public void mouseReleased() {
-        if (mode == TOWER_PLACING_MODE) {
-            Tower t = new Tower(mouseX, mouseY);
-            towerList.add(t);
+        if(mouseY>500||mouseY<310) {
+            if (mode == TOWER_PLACING_MODE) {
+                Tower t = new Tower(mouseX, mouseY);
+                towerList.add(t);
+            }
         }
     }
 

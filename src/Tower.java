@@ -7,7 +7,6 @@ public class Tower {
     private int x;
     private int y;
     private int timer;
-    ArrayList<Bullet> bulletList;
 
 
     public Tower(int x, int y){
@@ -23,20 +22,14 @@ public class Tower {
     }
 
 
-    public void draw (PApplet window){
+    public void draw (PApplet window) {
 //print x
-        timer--;
-        if(timer<=0) {
-            Bullet b = new Bullet(getX(),getY());
-            bulletList.add(b);
-            timer=10;
-        }
-        window.fill(0,230,20);
-        window.rect(20,40, 20,30);
-        for (Bullet bullet: bulletList){
+        window.fill(0, 200, 200);
+        window.rect(x, y, 30, 40);
+     /*   for (Bullet bullet: bulletList){
             bullet.update();
             bullet.draw(this);
         }
+      */
     }
-
 }
