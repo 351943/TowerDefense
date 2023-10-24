@@ -7,14 +7,17 @@ import java.util.ArrayList;
 public class Game extends PApplet {
     // TODO: declare game variables
     ArrayList<Tank> tankList;
-    ArrayList<Tank> towerList;
+    ArrayList<Tower> towerList;
     int timer;
+    final static int TOWER_PLACING_MODE = 0;
+    final static int NORMAL_PLAY_MODE = 1;
+
+    int mode = TOWER_PLACING_MODE;
+
 
 
     public void settings() {
         size(800, 800); // set the window size
-
-
     }
 
 
@@ -22,18 +25,7 @@ public class Game extends PApplet {
 // TODO: initialize game variables
         timer = 80;
         tankList = new ArrayList<Tank>();
-
-
-/*
-for (int i = 0; i < 10; i++) {
-Tank t = new Tank();
-tankList.add(t);
-}
-*/
-
-
-        Tower t1 = new Tower(10,10);
-        Tower t2 = new Tower(590,590);
+        towerList = new ArrayList<Tower>();
 //road
     }
     /***
@@ -54,8 +46,6 @@ tankList.add(t);
                 Tank t = new Tank();
                 tankList.add(t);
                 timer=80;
-
-
             }
             if(!tankList.isEmpty()){
                 for (Tank tank : tankList) {
@@ -63,14 +53,23 @@ tankList.add(t);
                     tank.draw(this);
                 }
             }
+            for (Tower tower: towerList){
+                tower.draw(this);
+            }
         }
 
 
 //update all the tanks
     }
+    public void mouseReleased() {
+        if (mode == TOWER_PLACING_MODE) {
+            Tower t = new Tower(mouseX, mouseY);
+            towerList.add(t);
+        }
+    }
 
 
-    public static void main(String[] args) {
+        public static void main(String[] args) {
         PApplet.main("Game");
     }
 }

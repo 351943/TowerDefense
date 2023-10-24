@@ -14,22 +14,22 @@ public class Tank {
         y = 300;
         xSpeed = 2;
         ySpeed = 0;
-
-
+    }
+    public int getX(){
+        return x;
+    }
+    public int getY(){
+        return y;
     }
 
 
     public void draw(PApplet window) {
         window.fill(0, 230, 20);
         window.rect(x, y, 130, 80);
-
-
     }
 
     public void update() {
         x += xSpeed;
         y += ySpeed;
-
-
     }
 }

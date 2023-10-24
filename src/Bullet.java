@@ -2,17 +2,14 @@ import processing.core.PApplet;
 
 
 public class Bullet {
-    private double x;
-    private double y;
-    private double xSpeed;
-    private double ySpeed;
+    private int x;
+    private int y;
 
 
-    public Bullet(){
-
-
+    public Bullet(int x, int y){
+        this.x = x;
+        this.y = y;
     }
-
 
 
     public void draw (PApplet window){
@@ -21,5 +18,12 @@ public class Bullet {
 
 
     }
+    public void update(Tank) {
+        int xDiff = Tank.getX() - x;
+        int yDiff = Tank.getY() - y;
+        x = x + xDiff / 10;
+        y = y + yDiff / 10;
+    }
+
 
 }
