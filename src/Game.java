@@ -26,12 +26,9 @@ public class Game extends PApplet {
         timer = 80;
         tankList = new ArrayList<Tank>();
         towerList = new ArrayList<Tower>();
-//road
+
     }
-    /***
-     * Draws each frame to the screen. Runs automatically in a loop at frameRate frames a second.
-     * tick each object (have it update itself), and draw each object
-     */
+
     public void draw() {
         background(255);
         timer--;
@@ -52,13 +49,13 @@ public class Game extends PApplet {
                     tank.draw(this);
                 }
             }
+            //create towers
             for (Tower tower: towerList){
                 tower.draw(this);
             }
         }
 
 
-//update all the tanks
 
     public void mouseReleased() {
         if(mouseY>500||mouseY<310) {
