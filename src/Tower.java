@@ -26,10 +26,10 @@ public class Tower {
 //print x
         window.fill(0, 200, 200);
         window.rect(x, y, 30, 40);
-     /*   for (Bullet bullet: bulletList){
+        for (Bullet bullet: bulletList){
             bullet.update();
             bullet.draw(this);
         }
-      */
+
     }
 }

@@ -18,12 +18,11 @@ public class Bullet {
 
 
     }
-  /*  public void update() {
+    public void update(Tank) {
         int xDiff = Tank.getX() - x;
         int yDiff = Tank.getY() - y;
         x = x + xDiff / 10;
         y = y + yDiff / 10;
     }
-*/
 
 }
