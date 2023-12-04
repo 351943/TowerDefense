@@ -2,8 +2,8 @@ import processing.core.PApplet;
 
 
 public class Tank {
-    private int x;
-    private int y;
+    private static int x;
+    private static int y;
     private double xSpeed;
     private double ySpeed;
     private int health;
@@ -15,10 +15,12 @@ public class Tank {
         xSpeed = 2;
         ySpeed = 0;
     }
-    public int getX(){
+    public static int getX(){
+
         return x;
     }
-    public int getY(){
+    public static int getY(){
+
         return y;
     }
 
