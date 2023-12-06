@@ -1,6 +1,7 @@
 import processing.core.PApplet;
 
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 
@@ -8,6 +9,8 @@ public class Game extends PApplet {
     // TODO: declare game variables
     ArrayList<Tank> tankList;
     ArrayList<Tower> towerList;
+
+    ArrayList<Bullet> bulletList;
     int timer;
     final static int TOWER_PLACING_MODE = 0;
     final static int NORMAL_PLAY_MODE = 1;
@@ -26,6 +29,7 @@ public class Game extends PApplet {
         timer = 80;
         tankList = new ArrayList<Tank>();
         towerList = new ArrayList<Tower>();
+        bulletList = new ArrayList<Bullet>();
 
     }
 
@@ -41,18 +45,40 @@ public class Game extends PApplet {
             if(timer<=0) {
                 Tank t = new Tank();
                 tankList.add(t);
+
+                /*
+                //new code
+                Bullet b = new Bullet(t.getX(), t.getY());
+                bulletList.add(b);
+                //end of new code
+
+                 */
+
+
                 timer = 150;
             }
+
             if(!tankList.isEmpty()){
                 for (Tank tank : tankList) {
                     tank.update();
                     tank.draw(this);
                 }
             }
+
             //create towers
             for (Tower tower: towerList){
                 tower.draw(this);
+                for (Bullet bullet: bulletList){
+                    bullet.update();
+                    bullet.draw(this,tower);
+
+                }
             }
+
+
+
+
+
         }
 
 
@@ -62,6 +88,11 @@ public class Game extends PApplet {
             if (mode == TOWER_PLACING_MODE) {
                 Tower t = new Tower(mouseX, mouseY);
                 towerList.add(t);
+
+                Bullet b = new Bullet(t.getX(), t.getY());
+                bulletList.add(b);
+
+
             }
         }
     }
@@ -71,5 +102,4 @@ public class Game extends PApplet {
         PApplet.main("Game");
     }
 }
-
 

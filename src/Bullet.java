@@ -2,29 +2,42 @@ import processing.core.PApplet;
 
 
 public class Bullet {
-    private int x;
-    private int y;
+    private double x;
+    private double y;
+    private double xSpeed;
+    private double ySpeed;
 
 
     public Bullet(int x, int y){
         this.x = x;
         this.y = y;
+        xSpeed = 2;
+        ySpeed = 1;
     }
 
 
-    public void draw (PApplet window){
-        window.fill(0,230,20);
-        window.rect(20,40, 20,30);
+    public void draw (PApplet window, Tower t){
+        window.fill(250,250,250);
+        window.rect((int)x,(int)y, 20,30);
 
 
     }
-   /* public void update(Tank) {
-        int xDiff = Tank.getX() - x;
-        int yDiff = Tank.getY() - y;
+
+     public void update() {
+
+        /*
+         x = x + xSpeed;
+         y = y + ySpeed;
+
+         */
+        double xDiff = Tank.getX() - x;
+        double yDiff = Tank.getY() - y;
         x = x + xDiff / 10;
         y = y + yDiff / 10;
+
+
     }
 
-    */
+
 
 }
