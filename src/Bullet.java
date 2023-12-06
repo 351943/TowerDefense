@@ -25,15 +25,10 @@ public class Bullet {
 
      public void update() {
 
-        /*
+
          x = x + xSpeed;
          y = y + ySpeed;
 
-         */
-        double xDiff = Tank.getX() - x;
-        double yDiff = Tank.getY() - y;
-        x = x + xDiff / 10;
-        y = y + yDiff / 10;
 
 
     }

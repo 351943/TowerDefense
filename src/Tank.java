@@ -2,8 +2,8 @@ import processing.core.PApplet;
 
 
 public class Tank {
-    private static int x;
-    private static int y;
+    private  int x;
+    private int y;
     private double xSpeed;
     private double ySpeed;
     private int health;
@@ -15,12 +15,17 @@ public class Tank {
         xSpeed = 2;
         ySpeed = 0;
     }
-    public static int getX(){
-
+    public int getX(){
         return x;
     }
-    public static int getY(){
+    public  boolean outOfBounds(){
+        if (x>800){
+            return true;
+        }
+        return false;
+    }
 
+    public int getY(){
         return y;
     }
 
