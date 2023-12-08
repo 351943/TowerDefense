@@ -14,19 +14,24 @@ public class Tank {
         y = 400;
         xSpeed = 2;
         ySpeed = 0;
+        health = 1;
     }
     public int getX(){
         return x;
     }
-    public  boolean outOfBounds(){
-        if (x>800){
-            return true;
-        }
-        return false;
-    }
-
     public int getY(){
         return y;
+    }
+    public double getWidth(){
+        return 130;
+    }
+
+    public void damage(){
+        health--;
+    }
+
+    public int getHealth(){
+        return health;
     }
 
 

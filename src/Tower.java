@@ -23,7 +23,6 @@ public class Tower {
 
 
     public void draw (PApplet window) {
-
         window.fill(0, 200, 200);
         window.rect(x, y, 70, 90);
 

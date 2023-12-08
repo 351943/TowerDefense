@@ -14,7 +14,7 @@ public class Game extends PApplet {
     int timer;
     final static int TOWER_PLACING_MODE = 0;
     final static int NORMAL_PLAY_MODE = 1;
-
+    int tanksDestroyed;
     int mode = TOWER_PLACING_MODE;
 
 
@@ -26,6 +26,7 @@ public class Game extends PApplet {
     public void setup() {
 // TODO: initialize game variables
         timer = 80;
+        tanksDestroyed=0;
         tankList = new ArrayList<Tank>();
         towerList = new ArrayList<Tower>();
         bulletList = new ArrayList<Bullet>();
@@ -36,19 +37,16 @@ public class Game extends PApplet {
         background(255);
         timer--;
 //road
+
         fill(0, 0, 0);
         rect(0, 350, 800, 150);
 //if timer runs out, make a new tank
         fill(100, 100, 0);
+        textSize(35);
+        text("Tanks destroyed: "+tanksDestroyed, 20, 50);
         if (timer <= 0) {
             Tank t = new Tank();
             tankList.add(t);
-
-            // for loop go through towerlist
-            //Bullet b = new Bullet(tower[i].getX(), tower[i].getY());
-            //bulletList.add(b);
-
-
             if (!towerList.isEmpty()) {
                 for (Tower tower : towerList) {
                     Bullet b = new Bullet(tower.getX(), tower.getY());
@@ -67,19 +65,35 @@ public class Game extends PApplet {
                 tank.update();
                 tank.draw(this);
             }
-            System.out.println(tankList.size());
         }
-
+        for (int i = 0; i < bulletList.size(); i++) {
+            Bullet bullet = bulletList.get(i);
+            for (int j = 0; j < tankList.size(); j++) {
+                Tank tank = tankList.get(j);
+                if (bullet.collide(tank.getX(),tank.getY(),tank.getWidth())){
+                    tank.damage();
+                    bulletList.remove(bullet);
+                    if (i>=1) {
+                        i--;
+                    }
+                    if (tank.getHealth()==0){
+                        tankList.remove(tank);
+                        tanksDestroyed++;
+                        if (j>=1) {
+                            j--;
+                        }
+                    }
+                }
+            }
+        }
         //create towers
         for (Tower tower : towerList) {
             tower.draw(this);
             for (Bullet bullet : bulletList) {
                 bullet.update();
                 bullet.draw(this, tower);
-
             }
         }
-
     }
 
 
