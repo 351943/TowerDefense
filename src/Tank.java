@@ -14,7 +14,7 @@ public class Tank {
         y = 400;
         xSpeed = 2;
         ySpeed = 0;
-        health = 1;
+        health = 3;
     }
     public int getX(){
         return x;
@@ -34,6 +34,12 @@ public class Tank {
         return health;
     }
 
+    public boolean isOffScreen(){
+        if(x>800 ){
+            return true;
+        }
+        return false;
+    }
 
     public void draw(PApplet window) {
         window.fill(0, 230, 20);

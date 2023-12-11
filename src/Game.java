@@ -1,7 +1,6 @@
 import processing.core.PApplet;
 
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 
@@ -14,7 +13,7 @@ public class Game extends PApplet {
     int timer;
     final static int TOWER_PLACING_MODE = 0;
     final static int NORMAL_PLAY_MODE = 1;
-    int tanksDestroyed;
+    int Health;
     int mode = TOWER_PLACING_MODE;
 
 
@@ -26,7 +25,7 @@ public class Game extends PApplet {
     public void setup() {
 // TODO: initialize game variables
         timer = 80;
-        tanksDestroyed=0;
+        Health =5;
         tankList = new ArrayList<Tank>();
         towerList = new ArrayList<Tower>();
         bulletList = new ArrayList<Bullet>();
@@ -34,6 +33,7 @@ public class Game extends PApplet {
     }
 
     public void draw() {
+        gameOver();
         background(255);
         timer--;
 //road
@@ -43,7 +43,7 @@ public class Game extends PApplet {
 //if timer runs out, make a new tank
         fill(100, 100, 0);
         textSize(35);
-        text("Tanks destroyed: "+tanksDestroyed, 20, 50);
+        text("Your Health: "+ Health, 20, 50);
         if (timer <= 0) {
             Tank t = new Tank();
             tankList.add(t);
@@ -78,7 +78,7 @@ public class Game extends PApplet {
                     }
                     if (tank.getHealth()==0){
                         tankList.remove(tank);
-                        tanksDestroyed++;
+                        Health++;
                         if (j>=1) {
                             j--;
                         }
@@ -94,6 +94,22 @@ public class Game extends PApplet {
                 bullet.draw(this, tower);
             }
         }
+
+        //tank remove offscreen
+        for (int i = 0; i < tankList.size(); i++) {
+            Tank tank = tankList.get(i);
+            if (tank.isOffScreen()){
+                tankList.remove(tank);
+                Health--;
+            }
+        }
+
+        //tank size limit
+        if (towerList.size()>5){
+            mode = NORMAL_PLAY_MODE;
+        }
+
+
     }
 
 

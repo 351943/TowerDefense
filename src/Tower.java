@@ -4,20 +4,20 @@ import java.util.ArrayList;
 
 
 public class Tower {
-    private static int x;
-    private static int y;
-    private int timer;
+    private int x;
+    private int y;
+    private static int range;
 
 
     public Tower(int x, int y){
         this.x=x;
         this.y=y;
-        timer = 20;
+
     }
-    public static int getX(){
+    public int getX(){
         return x;
     }
-    public static int getY(){
+    public int getY(){
         return y;
     }
 
