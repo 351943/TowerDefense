@@ -54,18 +54,22 @@ public class Game extends PApplet {
                     for (Bullet bullet : bulletList) {
                         bullet.update();
                         bullet.draw(this, tower);
+                        //clean (duplicate shooting)
                     }
                 }
             }
             timer = 150;
         }
 
+        //update and draw tank
         if (!tankList.isEmpty()) {
             for (Tank tank : tankList) {
                 tank.update();
                 tank.draw(this);
             }
         }
+
+        //tank damage and collision with bullet
         for (int i = 0; i < bulletList.size(); i++) {
             Bullet bullet = bulletList.get(i);
             for (int j = 0; j < tankList.size(); j++) {
@@ -86,7 +90,7 @@ public class Game extends PApplet {
                 }
             }
         }
-        //create towers
+        //create towers and shoot bullets
         for (Tower tower : towerList) {
             tower.draw(this);
             for (Bullet bullet : bulletList) {
@@ -112,7 +116,7 @@ public class Game extends PApplet {
 
     }
 
-
+    //place tank
     public void mouseReleased() {
         if (mouseY > 500 || mouseY < 310) {
             if (mode == TOWER_PLACING_MODE) {
@@ -121,6 +125,14 @@ public class Game extends PApplet {
                 Bullet b = new Bullet(t.getX(), t.getY());
                 bulletList.add(b);
             }
+        }
+    }
+
+    public void gameOver(){
+        if(Health <=0) {
+            background(100, 0, 0);
+            textSize(70);
+            text("Game Over", 300, 350);
         }
     }
 
