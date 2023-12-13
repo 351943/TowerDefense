@@ -2,9 +2,9 @@ import processing.core.PApplet;
 
 
 public class Bullet {
-    private double x;
-    private double y;
-    private double ySpeed;
+    private int x;
+    private int y;
+    private int ySpeed;
 
 
     public Bullet(int x, int y){
@@ -22,7 +22,7 @@ public class Bullet {
 
     public void draw (PApplet window, Tower t){
         window.fill(250,250,250);
-        window.rect((int)x,(int)y, 20,30);
+        window.rect(x,y, 20,30);
     }
 
      public void update() {
@@ -30,7 +30,7 @@ public class Bullet {
     }
 
     public boolean collide(int tankX,int tankY, double width){
-        if (((double)(tankX)+width) >= x && x>=(double)(tankX)) {
+        if ((tankX+width) >= x && x>=tankX) {
             if (y+20 >= (double)(tankY)&& y+20<(double)(tankY)+80.0) {
                 return true;
             }
