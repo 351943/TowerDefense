@@ -118,7 +118,10 @@ public class Game extends PApplet {
                     tank.levelUp();
                 }
                 if (min==1){
-                    min=4;
+                    min=5;
+                }
+                else{
+                    min+=5;
                 }
             }
         }
