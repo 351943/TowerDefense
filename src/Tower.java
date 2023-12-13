@@ -6,8 +6,6 @@ import java.util.ArrayList;
 public class Tower {
     private int x;
     private int y;
-    private static int range;
-
 
     public Tower(int x, int y){
         this.x=x;
