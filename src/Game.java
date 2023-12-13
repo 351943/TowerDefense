@@ -36,7 +36,7 @@ public class Game extends PApplet {
 
     public void draw() {
         //if game not over
-        if (gameOver()==false) {
+        if (!gameOver()) {
             background(255);
             timer--;
             //road
@@ -115,6 +115,7 @@ public class Game extends PApplet {
             if (tanksDestroyed%5==0&&tanksDestroyed>min){
                 System.out.println("h");
                 for (Tank tank:tankList) {
+                    System.out.println("d");
                     tank.levelUp();
                 }
                 if (min==1){
