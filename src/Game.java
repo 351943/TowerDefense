@@ -12,9 +12,10 @@ public class Game extends PApplet {
     ArrayList<Bullet> bulletList;
     int timer;
     int min;
-    int Health;
+    int userHealth;
     int tanksDestroyed;
     int coins;
+    int tankHealth;
 
 
     public void settings() {
@@ -27,11 +28,12 @@ public class Game extends PApplet {
         min=1;
         coins=5;
         timer = 80;
-        Health =5;
+        userHealth =5;
         tankList = new ArrayList<Tank>();
         towerList = new ArrayList<Tower>();
         bulletList = new ArrayList<Bullet>();
         tanksDestroyed=0;
+        tankHealth = 1;
     }
 
     public void draw() {
@@ -47,8 +49,9 @@ public class Game extends PApplet {
             textSize(35);
             //display amount pf coins
             text("Your Coins: " + coins, 20, 50);
+            text("Get 5 coins to add a new tank", 150,700);
             if (timer <= 0) {
-                Tank t = new Tank();
+                Tank t = new Tank(tankHealth);
                 tankList.add(t);
                 if (!towerList.isEmpty()) {
                     for (Tower tower : towerList) {
@@ -78,7 +81,9 @@ public class Game extends PApplet {
                 for (int j = 0; j < tankList.size(); j++) {
                     Tank tank = tankList.get(j);
                     if (bullet.collide(tank.getX(), tank.getY(), tank.getWidth())) {
+                        System.out.println(tank.getHealth());
                         tank.damage();
+
                         bulletList.remove(bullet);
                         if (i >= 1) {
                             i--;
@@ -86,7 +91,7 @@ public class Game extends PApplet {
                         if (tank.getHealth() == 0) {
                             tankList.remove(tank);
                             tanksDestroyed++;
-                            Health++;
+                            userHealth++;
                             if (j >= 1) {
                                 j--;
                             }
@@ -109,20 +114,34 @@ public class Game extends PApplet {
                 Tank tank = tankList.get(i);
                 if (tank.isOffScreen()) {
                     tankList.remove(tank);
-                    Health--;
+                    userHealth--;
                 }
+
             }
-            if (tanksDestroyed%5==0&&tanksDestroyed>min){
-                System.out.println("h");
+
+            if (tanksDestroyed%5==0 && tanksDestroyed> min){
+                System.out.println(tanksDestroyed);
+                    tankHealth++;
+
+                System.out.println("h:" + tankHealth);
+
+                /*
                 for (Tank tank:tankList) {
                     tank.levelUp();
                 }
+
+                 */
+
                 if (min==1){
                     min=5;
                 }
-                else{
-                    min+=5;
+                else {
+                    min += 5;
                 }
+
+
+
+
             }
         }
 
@@ -150,7 +169,7 @@ public class Game extends PApplet {
     }
 
     public boolean gameOver(){
-        if(Health <=0) {
+        if(userHealth <=0) {
             return true;
         }
         return false;

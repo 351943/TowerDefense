@@ -9,12 +9,12 @@ public class Tank {
     private int health;
 
 
-    public Tank() {
+    public Tank(int h) {
         x = 0;
         y = 400;
         xSpeed = 2;
         ySpeed = 0;
-        health = 1;
+        health = h;
     }
     public int getX(){
         return x;
@@ -22,6 +22,12 @@ public class Tank {
     public int getY(){
         return y;
     }
+
+    public void setHealth(){
+        health++;
+
+    }
+
     public double getWidth(){
         return 130;
     }
