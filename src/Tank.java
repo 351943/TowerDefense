@@ -2,10 +2,9 @@ import processing.core.PApplet;
 
 
 public class Tank {
-    private  int x;
+    private int x;
     private int y;
-    private double xSpeed;
-    private double ySpeed;
+    private static double xSpeed;
     private int health;
 
 
@@ -13,7 +12,6 @@ public class Tank {
         x = 0;
         y = 400;
         xSpeed = 2;
-        ySpeed = 0;
         health = h;
     }
     public int getX(){
@@ -21,11 +19,6 @@ public class Tank {
     }
     public int getY(){
         return y;
-    }
-
-    public void setHealth(){
-        health++;
-
     }
 
     public double getWidth(){
@@ -46,9 +39,6 @@ public class Tank {
         }
         return false;
     }
-    public void levelUp(){
-        health++;
-    }
 
     public void draw(PApplet window) {
         window.fill(0, 230, 20);
@@ -57,6 +47,5 @@ public class Tank {
 
     public void update() {
         x += xSpeed;
-        y += ySpeed;
     }
 }

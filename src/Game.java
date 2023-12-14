@@ -27,8 +27,8 @@ public class Game extends PApplet {
 // TODO: initialize game variables
         min=1;
         coins=5;
-        timer = 80;
-        userHealth =5;
+        timer = 150;
+        userHealth =3;
         tankList = new ArrayList<Tank>();
         towerList = new ArrayList<Tower>();
         bulletList = new ArrayList<Bullet>();
@@ -49,7 +49,7 @@ public class Game extends PApplet {
             textSize(35);
             //display amount pf coins
             text("Your Coins: " + coins, 20, 50);
-            text("Get 5 coins to add a new tank", 150,700);
+            text("Use 5 coins to add a new tank", 150,700);
             if (timer <= 0) {
                 Tank t = new Tank(tankHealth);
                 tankList.add(t);
@@ -64,7 +64,7 @@ public class Game extends PApplet {
                         }
                     }
                 }
-                timer = 150;
+                timer = 110;
             }
 
             //update and draw tank
@@ -81,7 +81,7 @@ public class Game extends PApplet {
                 for (int j = 0; j < tankList.size(); j++) {
                     Tank tank = tankList.get(j);
                     if (bullet.collide(tank.getX(), tank.getY(), tank.getWidth())) {
-                        System.out.println(tank.getHealth());
+                       // System.out.println(tank.getHealth());
                         tank.damage();
 
                         bulletList.remove(bullet);
@@ -91,7 +91,6 @@ public class Game extends PApplet {
                         if (tank.getHealth() == 0) {
                             tankList.remove(tank);
                             tanksDestroyed++;
-                            userHealth++;
                             if (j >= 1) {
                                 j--;
                             }
@@ -120,29 +119,16 @@ public class Game extends PApplet {
             }
 
             if (tanksDestroyed%5==0 && tanksDestroyed> min){
-                System.out.println(tanksDestroyed);
+               // System.out.println(tanksDestroyed);
                     tankHealth++;
 
-                System.out.println("h:" + tankHealth);
-
-                /*
-                for (Tank tank:tankList) {
-                    System.out.println("d");
-                    tank.levelUp();
-                }
-
-                 */
-
+               // System.out.println("h:" + tankHealth);
                 if (min==1){
                     min=5;
                 }
                 else {
                     min += 5;
                 }
-
-
-
-
             }
         }
 
@@ -159,7 +145,7 @@ public class Game extends PApplet {
     //place tank
     public void mouseReleased() {
         if (coins>=5) {
-            if (mouseY > 500 || mouseY < 310) {
+            if (mouseY > 500 || mouseY < 280) {
                 Tower t = new Tower(mouseX, mouseY);
                 towerList.add(t);
                 Bullet b = new Bullet(t.getX(), t.getY());
