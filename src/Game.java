@@ -28,7 +28,7 @@ public class Game extends PApplet {
         min=1;
         coins=5;
         timer = 150;
-        userHealth =3;
+        userHealth =4;
         tankList = new ArrayList<Tank>();
         towerList = new ArrayList<Tower>();
         bulletList = new ArrayList<Bullet>();
@@ -81,9 +81,7 @@ public class Game extends PApplet {
                 for (int j = 0; j < tankList.size(); j++) {
                     Tank tank = tankList.get(j);
                     if (bullet.collide(tank.getX(), tank.getY(), tank.getWidth())) {
-                       // System.out.println(tank.getHealth());
                         tank.damage();
-
                         bulletList.remove(bullet);
                         if (i >= 1) {
                             i--;
@@ -99,6 +97,7 @@ public class Game extends PApplet {
                     }
                 }
             }
+
             //create towers and shoot bullets
             for (Tower tower : towerList) {
                 tower.draw(this);
@@ -115,14 +114,10 @@ public class Game extends PApplet {
                     tankList.remove(tank);
                     userHealth--;
                 }
-
             }
 
             if (tanksDestroyed%5==0 && tanksDestroyed> min){
-               // System.out.println(tanksDestroyed);
-                    tankHealth++;
-
-               // System.out.println("h:" + tankHealth);
+                tankHealth++;
                 if (min==1){
                     min=5;
                 }
