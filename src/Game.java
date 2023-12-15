@@ -49,7 +49,7 @@ public class Game extends PApplet {
             textSize(35);
             //display amount pf coins
             text("Your Coins: " + coins, 20, 50);
-            text("Use 5 coins to add a new tank", 150,700);
+            text("Use 5 coins to add a new tower", 150,700);
             if (timer <= 0) {
                 Tank t = new Tank(tankHealth);
                 tankList.add(t);
@@ -145,7 +145,7 @@ public class Game extends PApplet {
     //place tank
     public void mouseReleased() {
         if (coins>=5) {
-            if (mouseY > 500 || mouseY < 280) {
+            if (mouseY > 500 || mouseY < 270) {
                 Tower t = new Tower(mouseX, mouseY);
                 towerList.add(t);
                 Bullet b = new Bullet(t.getX(), t.getY());
